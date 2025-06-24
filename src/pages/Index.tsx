@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { URLInput } from '@/components/URLInput';
 import { ChatInterface } from '@/components/ChatInterface';
+import { ApiKeyInput } from '@/components/ApiKeyInput';
 import { ScrapingService } from '@/services/ScrapingService';
 
 const Index = () => {
@@ -29,6 +30,10 @@ const Index = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Shaurya For Maple AI
           </p>
+        </div>
+
+        <div className="mb-8">
+          <ApiKeyInput />
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
