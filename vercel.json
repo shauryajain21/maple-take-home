@@ -9,7 +9,7 @@
       }
     },
     {
-      "src": "api/chat.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     }
   ],
