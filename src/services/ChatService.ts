@@ -1,5 +1,4 @@
 import { ScrapingService } from './ScrapingService';
-import OpenAI from 'openai';
 
 interface ChatMessage {
   id: string;
@@ -34,48 +33,28 @@ export class ChatService {
         };
       }
 
-      // Get API key from localStorage
-      const apiKey = localStorage.getItem('openai_api_key');
-      if (!apiKey) {
-        return {
-          success: false,
-          error: 'OpenAI API key not found. Please add your API key.'
-        };
-      }
-
-      // Initialize OpenAI
-      const openai = new OpenAI({
-        apiKey: apiKey,
-        dangerouslyAllowBrowser: true
+      // Call the local backend API
+      const response = await fetch('http://localhost:3001/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message,
+          contexts
+        })
       });
 
-      // Compose a prompt with the website content
-      const contextText = contexts.map((ctx) => 
-        `Title: ${ctx.title}\nURL: ${ctx.url}\nContent: ${ctx.text.slice(0, 2000)}\n`
-      ).join('\n---\n');
-
-      const prompt = `You are an intelligent assistant. Use the following website content to answer the user's question.\n\n${contextText}\n\nUser question: ${message}\n\nAnswer:`;
-
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant that answers questions about website content.' },
-          { role: 'user', content: prompt }
-        ],
-        max_tokens: 500,
-        temperature: 0.7
-      });
-
-      const aiResponse = completion.choices[0].message?.content?.trim();
-
-      if (!aiResponse) {
-        return {
-          success: false,
-          error: 'No response from OpenAI'
-        };
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
       }
 
-      return { success: true, response: aiResponse };
+      const data = await response.json();
+      if (data.response) {
+        return { success: true, response: data.response };
+      } else {
+        throw new Error(data.error || 'No response from API');
+      }
     } catch (error) {
       console.error('Chat error:', error);
       return {

@@ -1,73 +1,106 @@
-# Welcome to your Lovable project
+# Website Chat - AI-Powered Website Conversations
 
-## Project info
+An intelligent chat application that scrapes website content and allows you to have AI-powered conversations about it.
 
-**URL**: https://lovable.dev/projects/75ed6a4e-b45c-4760-b1e6-58036873e173
+## Features
 
-## How can I edit this code?
+- 🌐 **Website Scraping**: Extract content from any website
+- 🤖 **AI-Powered Chat**: Ask questions about scraped content using OpenAI
+- 🎤 **Voice Input**: Speak your questions using voice recognition
+- 💾 **Local Storage**: Saves scraped content to avoid re-scraping
+- 🎨 **Modern UI**: Beautiful interface with custom branding
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Express.js (Node.js)
+- **UI**: shadcn/ui + Tailwind CSS
+- **AI**: OpenAI GPT-3.5-turbo
+- **Voice**: Web Speech API
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/75ed6a4e-b45c-4760-b1e6-58036873e173) and start prompting.
+## Setup Instructions
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher)
+- npm or yarn
+- OpenAI API key
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**
+   ```bash
+   git clone <YOUR_REPO_URL>
+   cd url-scribe-conversations-main
+   ```
 
-Follow these steps:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Set up environment variables**
+   ```bash
+   # Copy the example file
+   cp env_example.txt .env
+   
+   # Edit .env and add your OpenAI API key
+   # Get your key from: https://platform.openai.com/account/api-keys
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Start the backend server**
+   ```bash
+   node server.js
+   ```
+   The server will run on `http://localhost:3001`
 
-# Step 3: Install the necessary dependencies.
-npm i
+5. **Start the frontend** (in a new terminal)
+   ```bash
+   npm run dev
+   ```
+   The app will be available at `http://localhost:8080` (or another port if 8080 is busy)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Usage
+
+1. **Scrape a website**: Enter a URL and click "Scrape Website"
+2. **Chat with AI**: Ask questions about the scraped content
+3. **Voice input**: Click the microphone button to speak your questions
+4. **View history**: Your chat history is saved locally
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+OPENAI_API_KEY=sk-your-actual-api-key-here
 ```
 
-**Edit a file directly in GitHub**
+## Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Frontend**: `npm run dev` (Vite dev server)
+- **Backend**: `node server.js` (Express server)
+- **Build**: `npm run build` (Production build)
 
-**Use GitHub Codespaces**
+## Security Notes
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Never commit your `.env` file to version control
+- The `.env` file is already in `.gitignore`
+- API keys are kept secure on the backend server
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with:
+For deployment, you'll need to:
+1. Set up environment variables on your hosting platform
+2. Deploy both the frontend and backend
+3. Update the frontend API URL to point to your deployed backend
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contributing
 
-## How can I deploy this project?
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-Simply open [Lovable](https://lovable.dev/projects/75ed6a4e-b45c-4760-b1e6-58036873e173) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the MIT License.
